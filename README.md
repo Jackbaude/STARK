@@ -39,8 +39,57 @@ The purpose of **STARK** is to conduct integrated testing and analysis of Starli
 - **Network throughput** using iPerf
 
 These measurements help to assess Starlink's performance in real-world conditions, contributing to the optimization of next-gen satellite communication systems.
+## Radio Ku-band
 
-## Getting Started
+## Network Setup - SSH Reverse Tunnel via AWS
+
+#### 1. Set Up AWS Instance
+- [ ] Create an EC2 instance on AWS.
+- [ ] Configure the security group to allow inbound SSH (port 22).
+- [ ] Generate or use an existing key pair for SSH access.
+
+#### 2. Set Up Reverse SSH Tunnel on Remote Machine
+- [ ] SSH into the **remote machine** (the one with Starlink).
+- [ ] Run the following command to establish the reverse SSH tunnel to the AWS instance:
+
+    ```bash
+    ssh -R 2222:localhost:22 your_aws_user@your_aws_instance_ip -i /path/to/your/aws_key.pem
+    ```
+
+    - `-R 2222:localhost:22`: Forwards port 2222 on AWS to port 22 on the remote machine.
+    - Replace `your_aws_user` with your AWS username (e.g., `ec2-user`).
+    - Replace `your_aws_instance_ip` with the public IP address of your AWS instance.
+    - Replace `/path/to/your/aws_key.pem` with the path to your AWS private key.
+
+- [ ] Keep the SSH session running to maintain the tunnel.
+
+#### 3. SSH from Anywhere to Remote Machine via AWS
+- [ ] From **anywhere** (your client machine), SSH into the AWS instance on port 2222:
+
+    ```bash
+    ssh -p 2222 your_remote_user@your_aws_instance_ip -i /path/to/your/aws_key.pem
+    ```
+
+    - `your_remote_user`: The user on your remote machine.
+    - `your_aws_instance_ip`: The public IP address of the AWS instance.
+    - `/path/to/your/aws_key.pem`: Path to your AWS private key.
+
+- [ ] This will connect you to the **remote machine** (the one with Starlink) via the SSH tunnel through AWS.
+
+#### 4. Automate Tunnel (Optional)
+- [ ] Use `autossh` or a cron job to keep the reverse SSH tunnel alive in case of network interruptions.
+
+
+#### Summary
+- **Remote machine (Starlink)**: Initiate reverse SSH tunnel to AWS.
+- **Client machine**: SSH to AWS instance on port 2222, which forwards to the remote machine’s SSH port.
+
+
+## Application tests
+
+- [] Perform Starlink GRPC measurments 
+- [] Generate traffic to starlink dish via iperf
+- [] traceroute from inside out, and from outside in
 
 1. **Clone the repository:**
 
