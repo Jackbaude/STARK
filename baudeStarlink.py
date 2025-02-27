@@ -10,16 +10,20 @@ def main():
     # Parameters
     samp_rate = 6.1e6  # Sample rate
     center_freq = 1.5e9  # Center frequency
-    output_file = "LNBMeasurements.bin"  # Output file for saving samples
-    num_samples = 100000000  # Number of samples to receive
-    rx_gain = 10
+    output_file = "data/LNBMeasurements.bin"  # Output file for saving samples
+    num_samples = 10000  # Number of samples to receive
+    #rx_gain = 20
     # Create USRP device (UHD)
     usrp = uhd.usrp.MultiUSRP()
 
     # Set parameters on the USRP
     usrp.set_rx_rate(samp_rate, 0)
     usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(center_freq), 0)
-    usrp.set_rx_gain(rx_gain, 0)  # Gain setting for the specified channel (0 is default)
+
+    # Automatic gain control
+    usrp.set_rx_agc(True, 0) # 0 for channel 0, i.e. the first channel of the USRP
+    
+    usrp.set_rx_antenna('TX/RX', 0)
 
     # Set up the stream and receive buffer
     st_args = uhd.usrp.StreamArgs("fc32", "sc16")  # Stream argument for complex 32-bit samples
