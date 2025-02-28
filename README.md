@@ -1,6 +1,16 @@
 # STARK  
 **Starlink Testing of Application and Radio Ku-band**
 
+## Purpose
+
+The purpose of **STARK** is to conduct integrated testing and analysis of Starlink communications using both physical-layer (Ku-band radio) measurements and application-layer network performance. Specifically, **STARK** aims to evaluate:
+
+- **Ku-band radio signal quality** (PHY layer)
+- **gRPC communication performance**
+- **Network throughput** using iPerf
+
+These measurements help to assess Starlink's performance in real-world conditions, contributing to the optimization of next-gen satellite communication systems.
+
 ## Hardware Setup
 
 Ensure the following hardware components are set up properly:
@@ -13,7 +23,7 @@ Ensure the following hardware components are set up properly:
 - **Software Defined Radio** (e.g., USRP B210)
 - **Mini Computer** (for processing and analysis)
 
-## Prerequisites and Dependencies
+## Dependencies
 
 Before using **STARK**, make sure the following software and dependencies are installed:
 
@@ -30,66 +40,10 @@ Before using **STARK**, make sure the following software and dependencies are in
 
 Ensure your **Starlink dish** is set up correctly, and you have access to the necessary networking hardware such as routers and SDRs.
 
-## Purpose
-
-The purpose of **STARK** is to conduct integrated testing and analysis of Starlink communications using both physical-layer (Ku-band radio) measurements and application-layer network performance. Specifically, **STARK** aims to evaluate:
-
-- **Ku-band radio signal quality** (PHY layer)
-- **gRPC communication performance**
-- **Network throughput** using iPerf
-
-These measurements help to assess Starlink's performance in real-world conditions, contributing to the optimization of next-gen satellite communication systems.
-## Radio Ku-band
-
-## Network Setup - SSH Reverse Tunnel via AWS
-
-#### 1. Set Up AWS Instance
-- [ ] Create an EC2 instance on AWS.
-- [ ] Configure the security group to allow inbound SSH (port 22).
-- [ ] Generate or use an existing key pair for SSH access.
-
-#### 2. Set Up Reverse SSH Tunnel on Remote Machine
-- [ ] SSH into the **remote machine** (the one with Starlink).
-- [ ] Run the following command to establish the reverse SSH tunnel to the AWS instance:
-
-    ```bash
-    ssh -R 2222:localhost:22 your_aws_user@your_aws_instance_ip -i /path/to/your/aws_key.pem
-    ```
-
-    - `-R 2222:localhost:22`: Forwards port 2222 on AWS to port 22 on the remote machine.
-    - Replace `your_aws_user` with your AWS username (e.g., `ec2-user`).
-    - Replace `your_aws_instance_ip` with the public IP address of your AWS instance.
-    - Replace `/path/to/your/aws_key.pem` with the path to your AWS private key.
-
-- [ ] Keep the SSH session running to maintain the tunnel.
-
-#### 3. SSH from Anywhere to Remote Machine via AWS
-- [ ] From **anywhere** (your client machine), SSH into the AWS instance on port 2222:
-
-    ```bash
-    ssh -p 2222 your_remote_user@your_aws_instance_ip -i /path/to/your/aws_key.pem
-    ```
-
-    - `your_remote_user`: The user on your remote machine.
-    - `your_aws_instance_ip`: The public IP address of the AWS instance.
-    - `/path/to/your/aws_key.pem`: Path to your AWS private key.
-
-- [ ] This will connect you to the **remote machine** (the one with Starlink) via the SSH tunnel through AWS.
-
-#### 4. Automate Tunnel (Optional)
-- [ ] Use `autossh` or a cron job to keep the reverse SSH tunnel alive in case of network interruptions.
-
-
-#### Summary
-- **Remote machine (Starlink)**: Initiate reverse SSH tunnel to AWS.
-- **Client machine**: SSH to AWS instance on port 2222, which forwards to the remote machine’s SSH port.
-
 
 ## Application tests
 
-- [] Perform Starlink GRPC measurments 
-- [] Generate traffic to starlink dish via iperf
-- [] traceroute from inside out, and from outside in
+#### Perform Starlink GRPC measurments 
 
 1. **Clone the repository:**
 
@@ -107,11 +61,50 @@ These measurements help to assess Starlink's performance in real-world condition
     Run Docker compose
 
     ```docker-compose -f starlink-mon/docker-compose.yaml up -d```
-3. **Ensure all hardware is properly connected**:
-   - Connect the Starlink dish and router.
-   - Set up your LNB, SDR, and mini computer.
 
-4. **Run the testing and measurement scripts** for Ku-band signal analysis and network performance.
+#### Generate traffic to starlink dish via iperf
+
+From the **AWS** server
+```
+iperf3 -s -p 8211
+```
+
+From the starlink measurment machine
+
+```
+iperf3 -c AWS_PUBLIC_IP -p 8211 -R -u -b 50M -l 1400 -P 4 -t 600 
+```
+* `-p` port 8211
+* `-R` reverse
+* `-u` UDP instead of TCP
+* `-b` bandwith of 50Mbs
+* `-l` use 1400 byte packets
+* `-t` run for 10 minutes
+
+#### traceroute from inside out, and from outside in
+
+## Radio Ku-band
+LNB 
+
+10.7-12.7Ghz
+
+L.0. (local oscialtor) 9.75-10.6Ghz
+
+Noise Floor 0.1 dB
+
+Low Band – Horizontal Polarization
+
+High Band – Horizontal Polarization
+
+Low Band – Vertical Polarization
+
+High Band – Vertical Polarization
+
+> It is not able to downconvert all of these simultaneously – it needs to be sent commands from the satellite receiver that switch the output to the desired band/polarization. The satellite receiver switches to receive either High or Low Band with a 22Hz tone and either Horizontal or Vertical Polarization with a switching voltage between 12.5v – 18v. These tones and voltages are sent up the coaxial cable from the back of the receiver to the output of the LNB.
+
+
+For starlink we need to measure the low band. 
+
 
 ## Parameters for Ku-band Signal and Testing
 
