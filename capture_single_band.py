@@ -4,25 +4,26 @@
 import uhd
 import numpy as np
 import time
-import sys
+import argparse
 
 def main():
-    # Parameters
-    samp_rate = 6.1e6  # Sample rate
-    center_freq = 1.5e9  # Center frequency
-    output_file = "data/LNBMeasurements.bin"  # Output file for saving samples
-    num_samples = 10000  # Number of samples to receive
-    #rx_gain = 20
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description="USRP data capture script")
+    parser.add_argument("--samp_rate", type=float, default=6.1e6, help="Sample rate (Hz)")
+    parser.add_argument("--center_freq", type=float, default=1.5e9, help="Center frequency (Hz)")
+    parser.add_argument("--output_file", type=str, default="data/LNBMeasurements.bin", help="Output file for saving samples")
+    parser.add_argument("--num_samples", type=int, default=10000, help="Number of samples to receive")
+    args = parser.parse_args()
+
     # Create USRP device (UHD)
     usrp = uhd.usrp.MultiUSRP()
 
     # Set parameters on the USRP
-    usrp.set_rx_rate(samp_rate, 0)
-    usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(center_freq), 0)
+    usrp.set_rx_rate(args.samp_rate, 0)
+    usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(args.center_freq), 0)
 
     # Automatic gain control
-    usrp.set_rx_agc(True, 0) # 0 for channel 0, i.e. the first channel of the USRP
-    
+    usrp.set_rx_agc(True, 0)  # 0 for channel 0, i.e., the first channel of the USRP
     usrp.set_rx_antenna('TX/RX', 0)
 
     # Set up the stream and receive buffer
@@ -33,7 +34,7 @@ def main():
     recv_buffer = np.zeros((1, 1000), dtype=np.complex64)  # Buffer to hold received samples
 
     # Open the output file in binary mode
-    with open(output_file, 'wb') as f:
+    with open(args.output_file, 'wb') as f:
         # Start the stream
         stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
         stream_cmd.stream_now = True
@@ -41,8 +42,8 @@ def main():
 
         try:
             # Receive samples in a loop
-            samples = np.zeros(num_samples, dtype=np.complex64)
-            for i in range(num_samples // 1000):
+            samples = np.zeros(args.num_samples, dtype=np.complex64)
+            for i in range(args.num_samples // 1000):
                 # Receive samples into the buffer
                 streamer.recv(recv_buffer, metadata)
                 samples[i * 1000:(i + 1) * 1000] = recv_buffer[0]
@@ -51,8 +52,7 @@ def main():
                 f.write(recv_buffer.tobytes())
 
                 # Print feedback every 1 second
-                print(f"Received {i * 1000 + 1000}/{num_samples} samples", end='\r')
-                time.sleep(1)  # Sleep for 1 second (you can adjust this as needed)
+                print(f"Received {i * 1000 + 1000}/{args.num_samples} samples", end='\r')
 
         except KeyboardInterrupt:
             print("\nStopping...")
@@ -61,4 +61,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

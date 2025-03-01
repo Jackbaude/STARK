@@ -105,6 +105,17 @@ High Band – Vertical Polarization
 
 For starlink we need to measure the low band. 
 
+**Capture Single Band**
+
+```
+python3 capture_single_band.py --samp_rate 6.1e6 --center_freq 1.5e9 --output_file data/measurements.bin --num_samples 10000
+```
+
+**Capture Multi Band**
+
+```
+python3 script.py --samp_rate 10e6 --output_file data/starlink.bin --num_samples 20000 --dwell_time 1.0
+```
 
 ## Parameters for Ku-band Signal and Testing
 
