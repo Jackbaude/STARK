@@ -43,7 +43,7 @@ Ensure your **Starlink dish** is set up correctly, and you have access to the ne
 
 ## Application tests
 
-#### Perform Starlink GRPC measurments 
+### Perform Starlink GRPC measurments 
 
 1. **Clone the repository:**
 
@@ -62,7 +62,20 @@ Ensure your **Starlink dish** is set up correctly, and you have access to the ne
 
     ```docker-compose -f starlink-mon/docker-compose.yaml up -d```
 
-#### Generate traffic to starlink dish via iperf
+### Generate traffic to starlink dish via iperf
+
+#### Quick Iperf
+
+This will connect to the aws instance, and starlink instance, and start iperf using *tmux*
+
+```
+chmod +x tmux_iperf.sh
+./tmux_iperf.sh
+```
+
+#### Manually run Iperf
+
+If you would like to run these manually
 
 From the **AWS** server
 ```
@@ -114,7 +127,7 @@ python3 capture_single_band.py --samp_rate 6.1e6 --center_freq 1.5e9 --output_fi
 **Capture Multi Band**
 
 ```
-python3 script.py --samp_rate 10e6 --output_file data/starlink.bin --num_samples 20000 --dwell_time 1.0
+python3 capture_multi_band.py --samp_rate 6.1e6 --output_file data/starlink.bin --num_samples 20000 --dwell_time 0.5 
 ```
 
 ## Parameters for Ku-band Signal and Testing

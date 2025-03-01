@@ -102,10 +102,304 @@ class StarlinkOFDM(gr.top_block, Qt.QWidget):
         self._qtgui_waterfall_sink_x_0_win = sip.wrapinstance(self.qtgui_waterfall_sink_x_0.qwidget(), Qt.QWidget)
 
         self.top_layout.addWidget(self._qtgui_waterfall_sink_x_0_win)
+        self.qtgui_freq_sink_x_0_4_0_0 = qtgui.freq_sink_c(
+            2048, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            (1.1575e+10), #fc
+            samp_rate, #bw
+            "", #name
+            1,
+            None # parent
+        )
+        self.qtgui_freq_sink_x_0_4_0_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_4_0_0.set_y_axis((-140), 10)
+        self.qtgui_freq_sink_x_0_4_0_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_4_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_4_0_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_4_0_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_4_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_4_0_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_4_0_0.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0_4_0_0.set_fft_window_normalized(False)
+
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_4_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_4_0_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_4_0_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_4_0_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_4_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_4_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_4_0_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_4_0_0_win)
+        self.qtgui_freq_sink_x_0_4_0 = qtgui.freq_sink_c(
+            2048, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            (1.1450e+10), #fc
+            samp_rate, #bw
+            "", #name
+            1,
+            None # parent
+        )
+        self.qtgui_freq_sink_x_0_4_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_4_0.set_y_axis((-140), 10)
+        self.qtgui_freq_sink_x_0_4_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_4_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_4_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_4_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_4_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_4_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_4_0.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0_4_0.set_fft_window_normalized(False)
+
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_4_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_4_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_4_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_4_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_4_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_4_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_4_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_4_0_win)
+        self.qtgui_freq_sink_x_0_4 = qtgui.freq_sink_c(
+            2048, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            (1.1325e+10), #fc
+            samp_rate, #bw
+            "", #name
+            1,
+            None # parent
+        )
+        self.qtgui_freq_sink_x_0_4.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_4.set_y_axis((-140), 10)
+        self.qtgui_freq_sink_x_0_4.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_4.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_4.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_4.enable_grid(False)
+        self.qtgui_freq_sink_x_0_4.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_4.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_4.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0_4.set_fft_window_normalized(False)
+
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_4.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_4.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_4.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_4.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_4.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_4_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_4.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_4_win)
+        self.qtgui_freq_sink_x_0_3 = qtgui.freq_sink_c(
+            2048, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            (1.1200e+10), #fc
+            samp_rate, #bw
+            "", #name
+            1,
+            None # parent
+        )
+        self.qtgui_freq_sink_x_0_3.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_3.set_y_axis((-140), 10)
+        self.qtgui_freq_sink_x_0_3.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_3.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_3.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_3.enable_grid(False)
+        self.qtgui_freq_sink_x_0_3.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_3.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_3.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0_3.set_fft_window_normalized(False)
+
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_3.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_3.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_3.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_3.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_3.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_3_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_3.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_3_win)
+        self.qtgui_freq_sink_x_0_2 = qtgui.freq_sink_c(
+            2048, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            (1.1075e+10), #fc
+            samp_rate, #bw
+            "", #name
+            1,
+            None # parent
+        )
+        self.qtgui_freq_sink_x_0_2.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_2.set_y_axis((-140), 10)
+        self.qtgui_freq_sink_x_0_2.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_2.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_2.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_2.enable_grid(False)
+        self.qtgui_freq_sink_x_0_2.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_2.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_2.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0_2.set_fft_window_normalized(False)
+
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_2.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_2.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_2.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_2.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_2.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_2_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_2.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_2_win)
+        self.qtgui_freq_sink_x_0_1 = qtgui.freq_sink_c(
+            2048, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            (1.0950e+10), #fc
+            samp_rate, #bw
+            "", #name
+            1,
+            None # parent
+        )
+        self.qtgui_freq_sink_x_0_1.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_1.set_y_axis((-140), 10)
+        self.qtgui_freq_sink_x_0_1.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_1.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_1.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_1.enable_grid(False)
+        self.qtgui_freq_sink_x_0_1.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_1.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_1.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0_1.set_fft_window_normalized(False)
+
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_1.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_1.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_1.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_1.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_1.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_1_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_1.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_1_win)
+        self.qtgui_freq_sink_x_0_0 = qtgui.freq_sink_c(
+            2048, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            (1.0825e+10), #fc
+            samp_rate, #bw
+            "", #name
+            1,
+            None # parent
+        )
+        self.qtgui_freq_sink_x_0_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_0.set_y_axis((-140), 10)
+        self.qtgui_freq_sink_x_0_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_0.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0_0.set_fft_window_normalized(False)
+
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_0_win)
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
             2048, #size
             window.WIN_BLACKMAN_hARRIS, #wintype
-            center, #fc
+            (1.0700e+10), #fc
             samp_rate, #bw
             "", #name
             1,
@@ -144,7 +438,7 @@ class StarlinkOFDM(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/jakku/git/STARK/LNBMeasurements.bin', True, 100, 0)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/jakku/git/STARK/data/mutli-band-measurements.bin', True, 100, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
 
 
@@ -152,6 +446,13 @@ class StarlinkOFDM(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.blocks_file_source_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.qtgui_freq_sink_x_0_1, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.qtgui_freq_sink_x_0_2, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.qtgui_freq_sink_x_0_3, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.qtgui_freq_sink_x_0_4, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.qtgui_freq_sink_x_0_4_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.qtgui_freq_sink_x_0_4_0_0, 0))
         self.connect((self.blocks_file_source_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
 
 
@@ -168,7 +469,14 @@ class StarlinkOFDM(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.center, self.samp_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range((1.0700e+10), self.samp_rate)
+        self.qtgui_freq_sink_x_0_0.set_frequency_range((1.0825e+10), self.samp_rate)
+        self.qtgui_freq_sink_x_0_1.set_frequency_range((1.0950e+10), self.samp_rate)
+        self.qtgui_freq_sink_x_0_2.set_frequency_range((1.1075e+10), self.samp_rate)
+        self.qtgui_freq_sink_x_0_3.set_frequency_range((1.1200e+10), self.samp_rate)
+        self.qtgui_freq_sink_x_0_4.set_frequency_range((1.1325e+10), self.samp_rate)
+        self.qtgui_freq_sink_x_0_4_0.set_frequency_range((1.1450e+10), self.samp_rate)
+        self.qtgui_freq_sink_x_0_4_0_0.set_frequency_range((1.1575e+10), self.samp_rate)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.center, self.samp_rate)
 
     def get_center(self):
@@ -176,7 +484,6 @@ class StarlinkOFDM(gr.top_block, Qt.QWidget):
 
     def set_center(self, center):
         self.center = center
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.center, self.samp_rate)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.center, self.samp_rate)
 
 

@@ -1,6 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+USRP Data Capture Script
 
+This script captures samples from a specified frequency using a USRP device and 
+saves the received data to a binary file.
+
+Usage:
+    python3 script.py [--samp_rate SAMPLE_RATE] [--center_freq CENTER_FREQ] \
+                      [--output_file OUTPUT_FILE] [--num_samples NUM_SAMPLES]
+
+Arguments:
+    --samp_rate      Sample rate in Hz (default: 6.1e6)
+    --center_freq    Center frequency in Hz (default: 1.5e9)
+    --output_file    File path for saving samples (default: data/LNBMeasurements.bin)
+    --num_samples    Number of samples to capture (default: 10000)
+
+Example:
+    python3 script.py --samp_rate 10e6 --center_freq 2.4e9 --output_file data/output.bin --num_samples 20000
+
+Dependencies:
+    - UHD (USRP Hardware Driver)
+    - NumPy
+    - Python 3.x
+
+"""
 import uhd
 import numpy as np
 import time

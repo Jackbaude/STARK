@@ -1,1 +1,1 @@
-iperf3 -c AWS_PUBLIC_IP -p 8211 -R -u -b 50M -l 1400 -P 4 -t 600 
+iperf3 -c $AWS_IP -p 8211 -R -u -b 50M -l 1400 -P 4 -t 600 
