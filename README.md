@@ -1,4 +1,4 @@
-# STARK  
+# S.T.A.R.K  
 **Starlink Testing of Application and Radio Ku-band**
 
 ## Purpose
