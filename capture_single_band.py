@@ -34,7 +34,7 @@ Dependencies:
 def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="USRP data capture script with LNB LO adjustment")
-    parser.add_argument("--samp_rate", type=float, default=6.1e6, help="Sample rate (Hz)")
+    parser.add_argument("--samp_rate", type=float, default=5.7e6, help="Sample rate (Hz)")
     parser.add_argument("--starlink_freq", type=float, required=True, help="Starlink frequency (Hz)")
     parser.add_argument("--lo", type=str, choices=["A", "B"], required=True, help="LNB LO selection: A (9.75 GHz) or B (10.6 GHz)")
     parser.add_argument("--gain", type=float, default=0.0, help="RX gain in dB")
